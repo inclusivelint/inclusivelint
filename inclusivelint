@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+source ./create_terminologies.sh
+
+directory=${1}
+
+for file in "$directory"/*; do
+    for pattern in "${!TERMINOLOGIES[@]}"; do
+        contravention=$(egrep $pattern $file | head -1)
+
+        if ! [[ -z $contravention ]]; then
+            printf "${TERMINOLOGIES[$pattern]}\n" $file
+        fi
+    done
+done
