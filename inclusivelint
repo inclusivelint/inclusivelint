@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
-source ./create_terminologies.sh
+source ./common/create_terminologies.sh
+source ./common/contraventions.sh
+source ./common/print_types.sh
+
+declare contraventionFound=false
 
 directory=${1}
 
 for file in "$directory"/*; do
     for pattern in "${!TERMINOLOGIES[@]}"; do
-        contravention=$(egrep $pattern $file | head -1)
-
-        if ! [[ -z $contravention ]]; then
-            printf "${TERMINOLOGIES[$pattern]}\n" $file
-        fi
+        find_contraventions $file $pattern
     done
 done
+
+if $contraventionFound ; then 
+    exit 1
+fi

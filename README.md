@@ -9,4 +9,3 @@ The `inclusivelint` enables a more inclusive language and diverse culture throug
 ```sh
 ./inclusivelint <your-project-path>
 ```
-
