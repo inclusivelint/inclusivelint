@@ -20,7 +20,9 @@ Then move the `inclusivelint` script to `/usr/bin`:
 sudo mv inclusivelint /user/bin
 ```
 
-Now you can run the linter on the directory where you want to check for non-inclusive terminologies:
+## Using the linter
+
+Run the linter on the directory where you want to look for non-inclusive terminologies:
 
 ```sh
 inclusivelint <DIRECTORY_PATH>
