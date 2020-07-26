@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-source ../common/print_types.sh
 source ./inclusivelint_tests.sh
 
 declare -A failed=false

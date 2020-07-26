@@ -2,6 +2,7 @@
 
 declare -A ERROR_TERMINOLOGIES
 declare -A WARNING_TERMINOLOGIES
+declare contraventionFound=false
 
 ERROR_TERMINOLOGIES["black\s?list"]="The term 'blacklist' was detected, consider other terms such as 'blocklist' instead."
 ERROR_TERMINOLOGIES["white\s?list"]="The term 'whitelist' was detected, consider other terms such as 'allowlist' instead."
@@ -17,7 +18,7 @@ function find_error_contraventions() {
 
     for contravention in $contraventions; do
         if ! [[ -z $contravention ]]; then
-            printError "[Error] "$fileName" (line $contravention): ${ERROR_TERMINOLOGIES[$pattern]}\n"
+            printError "[Error] "$file" (line $contravention): ${ERROR_TERMINOLOGIES[$pattern]}"
             contraventionFound=true
         fi
     done
@@ -31,7 +32,7 @@ function find_warning_contraventions() {
 
     for contravention in $contraventions; do
         if ! [[ -z $contravention ]]; then
-            printWarning "[Warning] "$fileName" (line $contravention): ${WARNING_TERMINOLOGIES[$pattern]}\n"
+            printWarning "[Warning] "$file" (line $contravention): ${WARNING_TERMINOLOGIES[$pattern]}"
         fi
     done
 }
@@ -55,26 +56,61 @@ function printWarning() {
     echo "${yellow}${*}${reset}"
 }
 
+function find_contraventions_from_git_repo() {
+    pushd "$directory" > /dev/null
 
-declare contraventionFound=false
+    branchName=$(git rev-parse --abbrev-ref HEAD)
+    files=$(git ls-tree -r $branchName --name-only)
 
-directory=${1}
+    # Save current IFS and split to array
+    SAVEIFS=$IFS
+    IFS=$'\n'
+    files=($files)
+    IFS=$SAVEIFS
 
-for file in "$directory"/* "$directory"/**/* ; do
-    if ! [[ -d "$file" && ! -L "$file" ]]; then
+    for (( i=0; i<${#files[@]}; i++ ))
+    do
+        for pattern in "${!ERROR_TERMINOLOGIES[@]}"; do
+            find_error_contraventions "${files[$i]}" $pattern
+        done
+    done
+
+    for (( i=0; i<${#files[@]}; i++ ))
+    do
+        for pattern in "${!WARNING_TERMINOLOGIES[@]}"; do
+            find_warning_contraventions "${files[$i]}" $pattern
+        done
+    done
+
+    popd > /dev/null
+}
+
+function find_contraventions() {
+    files=$(find "$directory" -type f -print)
+
+    for file in "$files"; do
         for pattern in "${!ERROR_TERMINOLOGIES[@]}"; do
             find_error_contraventions "$file" $pattern
         done
-    fi;
-done;
+    done;
 
-for file in "$directory"/* "$directory"/**/* ; do
-    if ! [[ -d "$file" && ! -L "$file" ]]; then
-        for pattern in "${!WARNING_TERMINOLOGIES[@]}"; do
-            find_warning_contraventions "$file" $pattern
-        done
-    fi;
-done
+    for file in "$files"; do
+        if ! [[ -d "$file" && ! -L "$file" ]]; then
+            for pattern in "${!WARNING_TERMINOLOGIES[@]}"; do
+                find_warning_contraventions "$file" $pattern
+            done
+        fi;
+    done
+}
+
+directory="${1}"
+
+# Check if the directory is a git repository
+if [ $(find "$directory" -name ".git") ]; then
+    find_contraventions_from_git_repo
+else
+    find_contraventions
+fi
 
 if $contraventionFound ; then 
     exit 1
