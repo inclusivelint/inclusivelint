@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-source ./common/create_terminologies.sh
-source ./common/contraventions.sh
-source ./common/print_types.sh
+SCRIPT_PATH=$(dirname `which $0`)
+
+source $SCRIPT_PATH/common/create_terminologies.sh
+source $SCRIPT_PATH/common/contraventions.sh
+source $SCRIPT_PATH/common/print_types.sh
 
 declare contraventionFound=false
 

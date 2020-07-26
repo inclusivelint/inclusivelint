@@ -8,7 +8,7 @@ function find_error_contraventions() {
 
     for contravention in $contraventions; do
         if ! [[ -z $contravention ]]; then
-            printError "$fileName [line $contravention]: ${ERROR_TERMINOLOGIES[$pattern]}\n"
+            printError "[Error] $fileName (line $contravention): ${ERROR_TERMINOLOGIES[$pattern]}\n"
             contraventionFound=true
         fi
     done
@@ -22,7 +22,7 @@ function find_warning_contraventions() {
 
     for contravention in $contraventions; do
         if ! [[ -z $contravention ]]; then
-            printWarning "$fileName [line $contravention]: ${WARNING_TERMINOLOGIES[$pattern]}\n"
+            printWarning "[Warning] $fileName (line $contravention): ${WARNING_TERMINOLOGIES[$pattern]}\n"
         fi
     done
 }

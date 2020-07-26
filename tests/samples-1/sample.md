@@ -1,7 +1,8 @@
+# Sample
+
 this is a black list
 
-this is a blacklist
-====
+This is a blacklist
 
 we have a master branch
 
