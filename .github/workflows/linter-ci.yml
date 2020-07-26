@@ -17,5 +17,5 @@ jobs:
     - name: Run a multi-line script
       working-directory: ./tests
       run: |
-        TERM=xterm
+        export TERM=xterm
         ./run_tests.sh
