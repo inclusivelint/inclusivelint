@@ -20,7 +20,10 @@ function linter_should_find_contraventions() {
     warningsAssertResult=$?
 
     if [[ $errorsAssertResult == 0 ]] && [[ $warningsAssertResult == 0 ]]; then
-        printInfo "${FUNCNAME[0]}: Passed\n"
+        red=`tput setaf 1`
+        green=`tput setaf 2`
+        reset=`tput sgr0`
+        echo "${green}${FUNCNAME[0]}: Passed${reset}"
     fi
 }
 

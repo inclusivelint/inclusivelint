@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
 
 function printInfo() {
-    GREEN=$(tput setaf 2)
-    NORMAL=$(tput sgr0)
-    printf "${GREEN}${*}${NORMAL}"
+    red=`tput setaf 1`
+    green=`tput setaf 2`
+    reset=`tput sgr0`
+    echo "${green}${*}${reset}"
 }
 
 function printError() {
-    RED=$(tput setaf 1)
-    NORMAL=$(tput sgr0)
-    printf "${RED}${*}${NORMAL}"
+    red=`tput setaf 1`
+    reset=`tput sgr0`
+    echo "${red}${*}${reset}"
 }
 
 function printWarning() {
-    YELLOW=$(tput setaf 3)
-    NORMAL=$(tput sgr0)
-    printf "${YELLOW}${*}${NORMAL}"
+    yellow=`tput setaf 3`
+    reset=`tput sgr0`
+    echo "${yellow}${*}${reset}"
 }
