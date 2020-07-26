@@ -1,10 +1,60 @@
 #!/usr/bin/env bash
 
-SCRIPT_PATH=$(dirname `which $0`)
+declare -A ERROR_TERMINOLOGIES
+declare -A WARNING_TERMINOLOGIES
 
-source $SCRIPT_PATH/common/create_terminologies.sh
-source $SCRIPT_PATH/common/contraventions.sh
-source $SCRIPT_PATH/common/print_types.sh
+ERROR_TERMINOLOGIES["black\s?list"]="The term 'blacklist' was detected, consider other terms such as 'blocklist' instead."
+ERROR_TERMINOLOGIES["white\s?list"]="The term 'whitelist' was detected, consider other terms such as 'allowlist' instead."
+ERROR_TERMINOLOGIES["slave"]="The term 'slave' was detected, consider other terms such as 'secondary' instead."
+
+WARNING_TERMINOLOGIES["master"]="The term 'master' was detected, maybe another terminology should be considered."
+
+function find_error_contraventions() {
+    file=${1}
+    fileName=$(basename -- $file)
+    pattern=${2}
+    contraventions=$(egrep -iHnr "$pattern" $file | cut -d : -f2)
+
+    for contravention in $contraventions; do
+        if ! [[ -z $contravention ]]; then
+            printError "[Error] $fileName (line $contravention): ${ERROR_TERMINOLOGIES[$pattern]}\n"
+            contraventionFound=true
+        fi
+    done
+}
+
+function find_warning_contraventions() {
+    file=${1}
+    fileName=$(basename -- $file)
+    pattern=${2}
+    contraventions=$(egrep -iHnrw "$pattern" $file | cut -d : -f2)
+
+    for contravention in $contraventions; do
+        if ! [[ -z $contravention ]]; then
+            printWarning "[Warning] $fileName (line $contravention): ${WARNING_TERMINOLOGIES[$pattern]}\n"
+        fi
+    done
+}
+
+function printInfo() {
+    red=`tput setaf 1`
+    green=`tput setaf 2`
+    reset=`tput sgr0`
+    echo "${green}${*}${reset}"
+}
+
+function printError() {
+    red=`tput setaf 1`
+    reset=`tput sgr0`
+    echo "${red}${*}${reset}"
+}
+
+function printWarning() {
+    yellow=`tput setaf 3`
+    reset=`tput sgr0`
+    echo "${yellow}${*}${reset}"
+}
+
 
 declare contraventionFound=false
 
