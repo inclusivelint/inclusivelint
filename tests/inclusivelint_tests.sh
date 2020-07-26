@@ -6,8 +6,8 @@ function linter_should_find_contraventions() {
     # prepare
     actualErrors=0
     actualWarnings=0
-    expectedErrors=3
-    expectedWarnings=2
+    expectedErrors=4
+    expectedWarnings=3
 
     # act
     count_contraventions "./samples-1" $actualErrors $actualWarnings
@@ -20,7 +20,7 @@ function linter_should_find_contraventions() {
     warningsAssertResult=$?
 
     if [[ $errorsAssertResult == 0 ]] && [[ $warningsAssertResult == 0 ]]; then
-        printInfo "${FUNCNAME[0]}: Passed\n"
+        printInfo "${FUNCNAME[0]}: Passed"
     fi
 }
 
@@ -42,7 +42,7 @@ function linter_should_not_find_contraventions() {
     warningsAssertResult=$?
 
     if [[ $errorsAssertResult == 0 ]] && [[ $warningsAssertResult == 0 ]]; then
-        printInfo "${FUNCNAME[0]}: Passed\n"
+        printInfo "${FUNCNAME[0]}: Passed"
     fi
 }
 
@@ -76,7 +76,7 @@ function assertEqual() {
     expected=$3
     
     if [[ $actual != $expected ]]; then
-        printError "${FUNCNAME[1]}: Failed (actual $errorType: $actual | expected $errorType: $expected)\n"
+        printError "${FUNCNAME[1]}: Failed (actual $errorType: $actual | expected $errorType: $expected)"
         failed=true
         return 1
     fi
