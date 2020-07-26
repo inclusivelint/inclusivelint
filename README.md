@@ -8,13 +8,19 @@ The `inclusivelint` is a static analysis tool that enables a more inclusive lang
 
 ## Installation
 
-Run the following script to install the `inclusivelint`:
+Check out the [Releases](https://github.com/fernandoBRS/inclusive-linter/releases) page to see the latest version, and download it:
 
 ```sh
-./install.sh
+wget -O - https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
 ```
 
-Then run the linter on the directory where you want to check for non-inclusive terminologies:
+Then move the `inclusivelint` script to `/usr/bin`:
+
+```sh
+sudo mv inclusivelint /user/bin
+```
+
+Now you can run the linter on the directory where you want to check for non-inclusive terminologies:
 
 ```sh
 inclusivelint <DIRECTORY_PATH>
