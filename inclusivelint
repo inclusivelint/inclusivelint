@@ -7,7 +7,6 @@ source $SCRIPT_PATH/common/contraventions.sh
 source $SCRIPT_PATH/common/print_types.sh
 
 declare contraventionFound=false
-export TERM=xterm
 
 directory=${1}
 

@@ -16,4 +16,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run a multi-line script
       working-directory: ./tests
-      run: ./run_tests.sh
+      run: |
+        TERM=xterm
+        ./run_tests.sh
