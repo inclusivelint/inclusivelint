@@ -10,28 +10,28 @@ ERROR_TERMINOLOGIES["slave"]="The term 'slave' was detected, consider other term
 WARNING_TERMINOLOGIES["master"]="The term 'master' was detected, maybe another terminology should be considered."
 
 function find_error_contraventions() {
-    file=${1}
-    fileName=$(basename -- $file)
+    file="$1"
+    fileName=$(basename -- "$file")
     pattern=${2}
-    contraventions=$(egrep -iHnr "$pattern" $file | cut -d : -f2)
+    contraventions=$(egrep -iHnr "$pattern" "$file" | cut -d : -f2)
 
     for contravention in $contraventions; do
         if ! [[ -z $contravention ]]; then
-            printError "[Error] $fileName (line $contravention): ${ERROR_TERMINOLOGIES[$pattern]}\n"
+            printError "[Error] "$fileName" (line $contravention): ${ERROR_TERMINOLOGIES[$pattern]}\n"
             contraventionFound=true
         fi
     done
 }
 
 function find_warning_contraventions() {
-    file=${1}
-    fileName=$(basename -- $file)
+    file="$1"
+    fileName=$(basename -- "$file")
     pattern=${2}
-    contraventions=$(egrep -iHnrw "$pattern" $file | cut -d : -f2)
+    contraventions=$(egrep -iHnrw "$pattern" "$file" | cut -d : -f2)
 
     for contravention in $contraventions; do
         if ! [[ -z $contravention ]]; then
-            printWarning "[Warning] $fileName (line $contravention): ${WARNING_TERMINOLOGIES[$pattern]}\n"
+            printWarning "[Warning] "$fileName" (line $contravention): ${WARNING_TERMINOLOGIES[$pattern]}\n"
         fi
     done
 }
@@ -60,18 +60,24 @@ declare contraventionFound=false
 
 directory=${1}
 
-for file in "$directory"/*; do
-    for pattern in "${!ERROR_TERMINOLOGIES[@]}"; do
-        find_error_contraventions $file $pattern
-    done
-done
+for file in "$directory"/* "$directory"/**/* ; do
+    if ! [[ -d "$file" && ! -L "$file" ]]; then
+        for pattern in "${!ERROR_TERMINOLOGIES[@]}"; do
+            find_error_contraventions "$file" $pattern
+        done
+    fi;
+done;
 
-for file in "$directory"/*; do
-    for pattern in "${!WARNING_TERMINOLOGIES[@]}"; do
-        find_warning_contraventions $file $pattern
-    done
+for file in "$directory"/* "$directory"/**/* ; do
+    if ! [[ -d "$file" && ! -L "$file" ]]; then
+        for pattern in "${!WARNING_TERMINOLOGIES[@]}"; do
+            find_warning_contraventions "$file" $pattern
+        done
+    fi;
 done
 
 if $contraventionFound ; then 
     exit 1
+else
+    printInfo "No non-inclusive terminologies found"
 fi
