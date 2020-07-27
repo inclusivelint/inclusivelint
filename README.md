@@ -10,7 +10,7 @@ The `inclusivelint` is a static analysis tool that enables a more inclusive lang
 
 - [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10) or Debian-based distributions (e.g. Ubuntu)
   
-## Installation
+## Running the linter locally
 
 Check out the [Releases](https://github.com/fernandoBRS/inclusive-linter/releases) page to see the latest version, and download it:
 
@@ -18,16 +18,40 @@ Check out the [Releases](https://github.com/fernandoBRS/inclusive-linter/release
 wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
 ```
 
-Then move the `inclusivelint` script to `/usr/bin`:
+Set the `inclusivelint` as an executable and move it to `/usr/bin` directory:
 
 ```sh
-sudo mv inclusivelint /usr/bin
+sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
 ```
 
-## Using the linter
-
-Run the linter on the directory where you want to look for non-inclusive terminologies:
+Then run the linter on the directory where you want to look for non-inclusive terminologies:
 
 ```sh
 inclusivelint <DIRECTORY_PATH>
 ```
+
+## Running the linter in CI pipelines
+
+### **GitHub Actions**
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install inclusive linter
+      run: |
+        wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
+        sudo chmod +x inclusivelint
+        sudo mv inclusivelint /usr/bin
+
+    - name: Run inclusive linter
+      run: |
+        export TERM=xterm
+        inclusivelint .
+```
+
+> The `export TERM=xterm` command is required on GitHub Actions to show the colorized output from the script.
