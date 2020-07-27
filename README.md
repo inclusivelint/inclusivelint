@@ -6,18 +6,22 @@ The `inclusivelint` is a static analysis tool that enables a more inclusive lang
 
 [![asciicast](https://asciinema.org/a/VlinK1jA4jT17N1xoucHNBdP6.svg)](https://asciinema.org/a/VlinK1jA4jT17N1xoucHNBdP6)
 
+## Prerequisites
+
+- [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10) or Debian-based distributions (e.g. Ubuntu)
+  
 ## Installation
 
 Check out the [Releases](https://github.com/fernandoBRS/inclusive-linter/releases) page to see the latest version, and download it:
 
 ```sh
-wget -O - https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
+wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
 ```
 
 Then move the `inclusivelint` script to `/usr/bin`:
 
 ```sh
-sudo mv inclusivelint /user/bin
+sudo mv inclusivelint /usr/bin
 ```
 
 ## Using the linter
