@@ -4,7 +4,7 @@ As developers, we’re continually writing code, and we do that by passing messa
 
 The `inclusivelint` is a static analysis tool that enables a more inclusive language and diverse culture through Git workflows by looking for non-inclusive terminologies on files and suggesting new ones. The [Categories & Terminologies](./docs/categories-and-terminologies.md) section covers the categories and non-inclusive terminologies currently supported by the linter.
 
-[![asciicast](https://asciinema.org/a/VlinK1jA4jT17N1xoucHNBdP6.svg)](https://asciinema.org/a/VlinK1jA4jT17N1xoucHNBdP6)
+[![Demo](https://asciinema.org/a/7Gnm6QbeemHbY04OG6SjUpFsN.svg)](https://asciinema.org/a/7Gnm6QbeemHbY04OG6SjUpFsN)
 
 ## Prerequisites
 
