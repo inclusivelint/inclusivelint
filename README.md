@@ -10,9 +10,9 @@ The `inclusivelint` is a static analysis tool that enables a more inclusive lang
 
 - [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10) or Debian-based distributions (e.g. Ubuntu)
   
-## Running the linter locally
+## Installing and Running the linter locally
 
-Check out the [Releases](https://github.com/fernandoBRS/inclusive-linter/releases) page to see the latest version, and download it:
+Check out the [Releases](https://github.com/fernandoBRS/inclusive-linter/releases), update the `/<VERSION>` below with the latest version and download it:
 
 ```sh
 wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
@@ -30,7 +30,7 @@ Then run the linter on the directory where you want to look for non-inclusive te
 inclusivelint <DIRECTORY_PATH>
 ```
 
-## Running the linter in CI pipelines
+## Installing and Running the linter in CI pipelines
 
 ### **GitHub Actions**
 
@@ -54,4 +54,21 @@ jobs:
         inclusivelint .
 ```
 
-> The `export TERM=xterm` command is required on GitHub Actions to show the colorized output from the script.
+> Hint: You can set the linter version as an [environment variable](https://docs.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables) on your pipeline to not let it hardcoded.
+
+### **Azure DevOps**
+
+```yaml
+steps:
+- script: |
+    wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
+    sudo chmod +x inclusivelint
+    sudo mv inclusivelint /usr/bin
+  displayName: Install inclusive linter
+- script: |
+    export TERM=xterm
+    inclusivelint .
+  displayName: Run inclusive linter
+````
+
+> Hint: You can use a [variable group](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml) on your pipeline to set the linter version as an environment variable to not let it hardcoded.
