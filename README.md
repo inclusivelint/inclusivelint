@@ -2,7 +2,7 @@
 
 As developers, we’re continually writing code, and we do that by passing messages. Each message carries a lot of context and semantics so we're always evolving how to do it in a better way. Terminology is in the roots of communication, and therefore is as vital for writing quality code as writing user stories, documentation, and even naming branches. If you care a lot about communicating effectively, I think we must use an **inclusive language** to do so.
 
-The `inclusivelint` is a static analysis tool that enables a more inclusive language and diverse culture through Git workflows by looking for non-inclusive terminologies on files and suggesting new ones. The [Categories & Terminologies](./docs/categories-and-terminologies.md) section covers the categories and non-inclusive terminologies currently supported by the linter.
+The `inclusivelint` is a static analysis tool that enables a more inclusive language and diverse culture by looking for non-inclusive terminologies on your Git repository and suggesting new ones. The [Categories & Terminologies](./docs/categories-and-terminologies.md) section covers the categories and non-inclusive terminologies currently supported by the linter.
 
 [![Demo](https://asciinema.org/a/7Gnm6QbeemHbY04OG6SjUpFsN.svg)](https://asciinema.org/a/7Gnm6QbeemHbY04OG6SjUpFsN)
 
@@ -10,7 +10,7 @@ The `inclusivelint` is a static analysis tool that enables a more inclusive lang
 
 - [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10) or Debian-based distributions (e.g. Ubuntu)
   
-## Installing and Running the linter locally
+## Running the linter locally
 
 Check out the [Releases](https://github.com/fernandoBRS/inclusive-linter/releases), update the `/<VERSION>` below with the latest version and download it:
 
@@ -24,13 +24,13 @@ Set the `inclusivelint` as an executable and move it to `/usr/bin` directory:
 sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
 ```
 
-Then run the linter on the directory where you want to look for non-inclusive terminologies:
+Then run the linter on your git repository:
 
 ```sh
-inclusivelint <DIRECTORY_PATH>
+inclusivelint <GIT_DIRECTORY_PATH>
 ```
 
-## Installing and Running the linter in CI pipelines
+## Running the linter in CI pipelines
 
 ### **GitHub Actions**
 
@@ -72,3 +72,7 @@ steps:
 ````
 
 > Hint: You can use a [variable group](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml) on your pipeline to set the linter version as an environment variable to not let it hardcoded.
+
+## Additional documentation
+
+- [How the search engine works](.docs/search-engine.md)
