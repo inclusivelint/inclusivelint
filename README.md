@@ -75,4 +75,4 @@ steps:
 
 ## Additional documentation
 
-- [How the search engine works](.docs/search-engine.md)
+- [How the search engine works](./docs/search-engine.md)
