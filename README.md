@@ -30,7 +30,7 @@ Then run the linter on your git repository:
 inclusivelint <GIT_DIRECTORY_PATH>
 ```
 
-To check which version of the software its installed, run:
+To check the installed version, run the following command:
 
 ```sh
 inclusivelint -v

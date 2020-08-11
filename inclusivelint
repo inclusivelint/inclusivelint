@@ -120,7 +120,7 @@ do
         exit 0
         ;;
     *) 
-        echo "Please use valid arguments. Eg. -v for version"
+        echo "Invalid argument. Use for example -v for version"
         exit 1
         ;;
     esac
