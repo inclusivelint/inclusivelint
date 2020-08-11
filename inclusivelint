@@ -15,8 +15,25 @@ function get_version() {
     SOFTWARE_VERSION="v0.0.1"
 }
 
+function is_image() {
+    imageExtensions=(".gif" ".jpeg" ".svg" ".png" ".jpg")
+    fileName="$1"
+
+    for extension in ${imageExtensions[@]}; do
+        if [[ $fileName == *$extension ]]; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
 function find_error_contraventions() {
     file="$1"
+    if is_image $file; then
+        return
+    fi
+
     fileName=$(basename -- "$file")
     pattern=${2}
     contraventions=$(egrep -iHnr "$pattern" "$file" | cut -d : -f2)
@@ -31,6 +48,10 @@ function find_error_contraventions() {
 
 function find_warning_contraventions() {
     file="$1"
+    if is_image $file; then
+        return
+    fi
+
     fileName=$(basename -- "$file")
     pattern=${2}
     contraventions=$(egrep -iHnrw "$pattern" "$file" | cut -d : -f2)
