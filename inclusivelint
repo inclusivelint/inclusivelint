@@ -3,12 +3,17 @@
 declare -A ERROR_TERMINOLOGIES
 declare -A WARNING_TERMINOLOGIES
 declare contraventionFound=false
+declare SOFTWARE_VERSION
 
 ERROR_TERMINOLOGIES["black\s?list"]="The term 'blacklist' was detected, consider other terms such as 'blocklist' instead."
 ERROR_TERMINOLOGIES["white\s?list"]="The term 'whitelist' was detected, consider other terms such as 'allowlist' instead."
 ERROR_TERMINOLOGIES["slave"]="The term 'slave' was detected, consider other terms such as 'secondary' instead."
 
 WARNING_TERMINOLOGIES["master"]="The term 'master' was detected, maybe another terminology should be considered."
+
+function get_version() {
+    SOFTWARE_VERSION="v0.0.1"
+}
 
 function find_error_contraventions() {
     file="$1"
@@ -103,7 +108,23 @@ function find_contraventions() {
     done
 }
 
+get_version
 directory="${1}"
+
+while getopts v option
+do
+    case "${option}"
+    in
+    v)
+        echo $SOFTWARE_VERSION
+        exit 0
+        ;;
+    *) 
+        echo "Please use valid arguments. Eg. -v for version"
+        exit 1
+        ;;
+    esac
+done
 
 # Check if the directory is a git repository
 if [ $(find "$directory" -name ".git") ]; then

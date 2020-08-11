@@ -30,6 +30,12 @@ Then run the linter on your git repository:
 inclusivelint <GIT_DIRECTORY_PATH>
 ```
 
+To check which version of the software its installed, run:
+
+```sh
+inclusivelint -v
+```
+
 ## Running the linter in CI pipelines
 
 ### **GitHub Actions**
