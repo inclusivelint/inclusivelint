@@ -141,13 +141,6 @@ function find_contraventions() {
 
 get_version
 create_dictionary
-
-# for pattern in "${!ERROR_TERMINOLOGIES[@]}"; do
-#     echo "KEY: $pattern VALUE: ${ERROR_TERMINOLOGIES[$pattern]}"
-# done
-
-# exit 1
-
 directory="${1}"
 
 while getopts v option
