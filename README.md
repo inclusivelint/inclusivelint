@@ -36,6 +36,22 @@ To check the installed version, run the following command:
 inclusivelint -v
 ```
 
+## Development Requirements
+
+The parsers of this project are writtne using Python3. So, in order to update the dictionary that is located in 
+```parsers/outputRelation.txt```, install Python3.* and run:
+
+```sh
+python retextEqualityParser.py
+```
+Note: be sure that ```python``` command is pointing to python3.*. To check it do:
+``` sh
+python --version
+```
+
+The parser will get the ```wordsTable.md``` file in the same directory and output the dictionary to the
+```outputRelation.txt```, also in the same folder.
+
 ## Running the linter in CI pipelines
 
 ### **GitHub Actions**
