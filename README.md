@@ -38,19 +38,20 @@ inclusivelint -v
 
 ## Development Requirements
 
-The parsers of this project are writtne using Python3. So, in order to update the dictionary that is located in 
-```parsers/outputRelation.txt```, install Python3.* and run:
+The linter leverages a terms parser written in Python 3. If there is a need to update the dictionary located on ```parsers/outputRelation.txt```, make sure you have Python 3.x installed then run it:
 
 ```sh
 python retextEqualityParser.py
 ```
+
 Note: be sure that ```python``` command is pointing to python3.*. To check it do:
+
 ``` sh
 python --version
 ```
 
-The parser will get the ```wordsTable.md``` file in the same directory and output the dictionary to the
-```outputRelation.txt```, also in the same folder.
+The parser receives the ```wordsTable.md``` as input and create/update the dictionary on the
+```outputRelation.txt```, located on the same directory.
 
 ## Running the linter in CI pipelines
 
