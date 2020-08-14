@@ -17,7 +17,7 @@ VERSION="0.0.1"
 
 wget https://github.com/fernandoBRS/inclusive-linter/releases/download/${VERSION}/inclusivelint -O- | tr -d '\r' >inclusivelint
 if chmod +x inclusivelint && mv inclusivelint /usr/bin; then
-    printInfo "Finished intallation. Check if everything is workning well running inclusivelint -v"
+    printInfo "Finished intallation. Check if everything is working well running inclusivelint -v"
     exit 0
 fi
 
