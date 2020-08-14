@@ -11,6 +11,16 @@ ERROR_TERMINOLOGIES["slave"]="The term 'slave' was detected, consider other term
 
 WARNING_TERMINOLOGIES["master"]="The term 'master' was detected, maybe another terminology should be considered."
 
+function create_dictionary() {
+    while read line; do
+        key="$(cut -d'=' -f1 <<<"$line")"
+        value="$(cut -d'=' -f2 <<<"$line")"
+        if [[ ! $key == *" "* ]]; then
+            WARNING_TERMINOLOGIES[$key]="The term $key was detected, consider other terms such as $value instead."
+        fi
+    done < <( cat parsers/outputRelation.txt )
+}
+
 function get_version() {
     SOFTWARE_VERSION="v0.0.1"
 }
@@ -130,6 +140,7 @@ function find_contraventions() {
 }
 
 get_version
+create_dictionary
 directory="${1}"
 
 while getopts v option
