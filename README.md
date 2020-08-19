@@ -12,6 +12,10 @@ The `inclusivelint` is a static analysis tool that enables a more inclusive lang
   
 ## Running the linter locally
 
+There are two main ways of installing inclusivelint, manual steps or via script.
+
+### Running all steps manually
+
 Check out the [Releases](https://github.com/fernandoBRS/inclusive-linter/releases), update the `/<VERSION>` below with the latest version and download it:
 
 ```sh
@@ -23,6 +27,34 @@ Set the `inclusivelint` as an executable and move it to `/usr/bin` directory:
 ```sh
 sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
 ```
+
+Create the folder to drop the dictionary of words:
+
+```sh
+mdkir ~/.inclusivelint
+```
+
+Download the dictionary on the github releases:
+
+```sh
+wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/outputRelation.txt
+```
+
+Move the dictionary to inclusivelint folder:
+
+```sh
+mv outputRelation.txt ~/.inclusivelint
+```
+
+### Installing via script
+
+We created a script to make the intallation process easier. The script```install.sh``` is on the repo. To run it, do:
+
+``` sh
+sudo ./install.sh
+```
+
+### Running after installation
 
 Then run the linter on your git repository:
 
