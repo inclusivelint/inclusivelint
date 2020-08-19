@@ -100,9 +100,10 @@ jobs:
     - name: Install inclusive linter
       run: |
         wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
-        sudo chmod +x inclusivelint
-        sudo mv inclusivelint /usr/bin
-
+        sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
+        mdkir ~/.inclusivelint
+        wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/outputRelation.txt
+        mv outputRelation.txt ~/.inclusivelint
     - name: Run inclusive linter
       run: |
         export TERM=xterm
@@ -117,8 +118,10 @@ jobs:
 steps:
 - script: |
     wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
-    sudo chmod +x inclusivelint
-    sudo mv inclusivelint /usr/bin
+    sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
+    mdkir ~/.inclusivelint
+    wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/outputRelation.txt
+    mv outputRelation.txt ~/.inclusivelint
   displayName: Install inclusive linter
 - script: |
     export TERM=xterm
