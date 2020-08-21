@@ -4,6 +4,10 @@ declare -A ERROR_TERMINOLOGIES
 declare -A WARNING_TERMINOLOGIES
 declare contraventionFound=false
 declare SOFTWARE_VERSION
+declare WORD_TO_ADD
+declare TYPE_OF_WORD
+declare OPERATION_TO_PERFORM
+declare REPLACEMENT_WORD
 
 ERROR_TERMINOLOGIES["black\s?list"]="The term 'blacklist' was detected, consider other terms such as 'blocklist' instead."
 ERROR_TERMINOLOGIES["white\s?list"]="The term 'whitelist' was detected, consider other terms such as 'allowlist' instead."
@@ -23,6 +27,23 @@ function create_dictionary() {
 
 function get_version() {
     SOFTWARE_VERSION="v0.0.1"
+}
+
+function add_word_to_dict() {
+    word="$1"
+    type="$2"
+    replacement="$3"
+
+    lineToAppendOnDict="${word}=${replacement}"
+    echo $lineToAppendOnDict >>  ~/.inclusivelint/outputRelation.txt
+}
+
+function do_operation() {
+    OP="$1"
+    
+    if [[ $OP == "ADD" ]]; then
+        add_word_to_dict $2 $3 $4
+    fi
 }
 
 function is_image() {
@@ -140,16 +161,26 @@ function find_contraventions() {
 }
 
 get_version
-create_dictionary
 directory="${1}"
 
-while getopts v option
+while getopts 'avw:t:r:' option
 do
     case "${option}"
     in
     v)
         echo $SOFTWARE_VERSION
-        exit 0
+        ;;
+    w)
+        WORD_TO_ADD=${OPTARG}
+        ;;
+    t)
+        TYPE_OF_WORD=${OPTARG}
+        ;;
+    a)
+        OPERATION="ADD"
+        ;;
+    r)
+        REPLACEMENT_WORD=${OPTARG}
         ;;
     *) 
         echo "Invalid argument. Use for example -v for version"
@@ -157,6 +188,13 @@ do
         ;;
     esac
 done
+
+if [ ! -z "$OPERATION" ]; then
+    do_operation $OPERATION $WORD_TO_ADD $TYPE_OF_WORD $REPLACEMENT_WORD
+    exit 0
+fi
+
+create_dictionary
 
 # Check if the directory is a git repository
 if [ $(find "$directory" -name ".git") ]; then
