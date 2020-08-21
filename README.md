@@ -70,9 +70,9 @@ inclusivelint -v
 
 ## Adding new words to the dictionary
 
-To add new words to the dictionaty, there are two main ways:
+To add new words to the dictionary, there are two main ways:
 
-### Edit dictionary file
+### Option 1: Edit dictionary file
 
 You can edit the ```outputRelation.txt``` that is located in ```~/.inclusivelint``` folder.
 Add a line on the end of the file following:
@@ -81,7 +81,7 @@ Add a line on the end of the file following:
 word_to_be_changed=suggested_word
 ```
 
-### Use the add command
+### Option 2: Use the add command
 
 There is a add command on the inclusivelint to add new words and suggestions to the dict. To use it do:
 
