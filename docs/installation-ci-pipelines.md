@@ -2,6 +2,8 @@
 
 ### **GitHub Actions**
 
+You can add a job to your existing yaml:
+
 ```yaml
 jobs:
   build:
@@ -22,6 +24,8 @@ jobs:
         export TERM=xterm
         inclusivelint .
 ```
+
+Or add a standalone yaml, [this example](../samples/inclusivelint.yml) with `workflow_dispatch` trigger.
 
 ### **Azure DevOps**
 
