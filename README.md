@@ -1,4 +1,4 @@
-# Inclusive Linter ![inclusivelint-ci](https://github.com/fernandoBRS/inclusive-linter/workflows/inclusivelint-ci/badge.svg)
+# Inclusivelint ![inclusivelint-ci](https://github.com/fernandoBRS/inclusive-linter/workflows/inclusivelint-ci/badge.svg)
 
 As developers, we’re continually writing code, and we do that by passing messages. Each message carries a lot of context and semantics so we're always evolving how to do it in a better way. Terminology is in the roots of communication, and therefore is as vital for writing quality code as writing user stories, documentation, and even naming branches. If you care a lot about communicating effectively, I think we must use an **inclusive language** to do so.
 
@@ -9,90 +9,12 @@ The `inclusivelint` is a static analysis tool that enables a more inclusive lang
 ## Prerequisites
 
 - [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10) or Debian-based distributions (e.g. Ubuntu)
-  
-## Running the linter locally
 
-There are two main ways of installing inclusivelint, manual steps or via script.
+## Guidelines
 
-### Running all steps manually
-
-Check out the [Releases](https://github.com/fernandoBRS/inclusive-linter/releases), update the `/<VERSION>` below with the latest version and download it:
-
-```sh
-wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
-```
-
-Set the `inclusivelint` as an executable and move it to `/usr/bin` directory:
-
-```sh
-sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
-```
-
-Create the folder to drop the dictionary of words:
-
-```sh
-mdkir ~/.inclusivelint
-```
-
-Download the dictionary on the github releases:
-
-```sh
-wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/outputRelation.txt
-```
-
-Move the dictionary to inclusivelint folder:
-
-```sh
-mv outputRelation.txt ~/.inclusivelint
-```
-
-### Installing via script
-
-We created a script to make the intallation process easier. The script```install.sh``` is on the repo. To run it, do:
-
-``` sh
-sudo ./install.sh
-```
-
-### Running after installation
-
-Then run the linter on your git repository:
-
-```sh
-inclusivelint <GIT_DIRECTORY_PATH>
-```
-
-To check the installed version, run the following command:
-
-```sh
-inclusivelint -v
-```
-
-## Adding new words to the dictionary
-
-To add new words to the dictionary, there are two main ways:
-
-### Option 1: Edit dictionary file
-
-You can edit the ```outputRelation.txt``` that is located in ```~/.inclusivelint``` folder.
-Add a line on the end of the file following:
-
-``` txt
-word_to_be_changed=suggested_word
-```
-
-### Option 2: Use the add command
-
-There is a add command on the inclusivelint to add new words and suggestions to the dict. To use it do:
-
-``` sh
-./inclusivelint -a -w word_to_be_changed -t error -r replacement_suggestion
-```
-
-- **-a:** add word flag. Mandatory if adding a new word.
-- **-w:** word to be blocked.
-- **-t:** type of the new relation. It can be error or warning.
-- **-r:** replacement word suggestion.
+- [Installing and running the linter in your local environment](./docs/installation.md)
+- [Installing and running the linter on CI pipelines](./docs/installation-ci-pipelines.md)
+- [Adding new words to the dictionary](./docs/add-new-words.md)
 
 ## Development Requirements
 
@@ -110,52 +32,6 @@ python --version
 
 The parser receives the ```wordsTable.md``` as input and create/update the dictionary on the
 ```outputRelation.txt```, located on the same directory.
-
-## Running the linter in CI pipelines
-
-### **GitHub Actions**
-
-```yaml
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Install inclusive linter
-      run: |
-        wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
-        sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
-        mdkir ~/.inclusivelint
-        wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/outputRelation.txt
-        mv outputRelation.txt ~/.inclusivelint
-    - name: Run inclusive linter
-      run: |
-        export TERM=xterm
-        inclusivelint .
-```
-
-> Hint: You can set the linter version as an [environment variable](https://docs.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables) on your pipeline to not let it hardcoded.
-
-### **Azure DevOps**
-
-```yaml
-steps:
-- script: |
-    wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
-    sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
-    mdkir ~/.inclusivelint
-    wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/outputRelation.txt
-    mv outputRelation.txt ~/.inclusivelint
-  displayName: Install inclusive linter
-- script: |
-    export TERM=xterm
-    inclusivelint .
-  displayName: Run inclusive linter
-````
-
-> Hint: You can use a [variable group](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml) on your pipeline to set the linter version as an environment variable to not let it hardcoded.
 
 ## Additional documentation
 
