@@ -117,19 +117,19 @@ The parser receives the ```wordsTable.md``` as input and create/update the dicti
 
 ```yaml
 jobs:
-  build:
+  inclusivelint:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-
     - name: Install inclusive linter
       run: |
-        wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/inclusivelint
-        sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
-        mdkir ~/.inclusivelint
-        wget https://github.com/fernandoBRS/inclusive-linter/releases/download/<VERSION>/outputRelation.txt
-        mv outputRelation.txt ~/.inclusivelint
+        wget https://github.com/fernandoBRS/inclusive-linter/releases/download/$VERSION/inclusivelint -O- | tr -d '\r' >inclusivelint
+        sudo chmod +x inclusivelint && sudo mv inclusivelint /usr/bin
+        mkdir ~/.inclusivelint
+        wget https://github.com/fernandoBRS/inclusive-linter/releases/download/$VERSION/outputRelation.txt -O- | tr -d '\r' >outputRelation.txt
+        sudo mv outputRelation.txt ~/.inclusivelint
+      env:
+        VERSION: <INSERT LATEST VERSION HERE>
     - name: Run inclusive linter
       run: |
         export TERM=xterm
