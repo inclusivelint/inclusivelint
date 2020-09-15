@@ -1,0 +1,19 @@
+name: inclusivelint-ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run a multi-line script
+      working-directory: ./tests
+      run: |
+        export TERM=xterm
+        ./run_tests.sh
