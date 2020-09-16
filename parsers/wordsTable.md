@@ -348,7 +348,6 @@
 | `gay-agenda` | [basic](#basic) | `gay agenda`, `homosexual agenda` | `gay issues` |
 | `gay-rights` | [basic](#basic) | `special rights`, `gay rights` | `equal rights`, `civil rights for gay people` |
 | `fag` | [basic](#basic) | `fag`, `faggot`, `dyke`, `homo`, `sodomite` | `gay` |
-| `bi` | [basic](#basic) | `bi` | `bisexual` |
 | `homosexual-marriage` | [basic](#basic) | `homosexual marriage` | `gay marriage`, `same-sex marriage` |
 | `tranny` | [basic](#basic) | `tranny` | `transgender` |
 | `transvestite` | [basic](#basic) | `transvestite` | `cross-dresser` |
