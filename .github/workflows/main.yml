@@ -12,6 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Install inclusivelint
+      run: |
+        sudo ./install.sh
+ 
     - name: Run a multi-line script
       working-directory: ./tests
       run: |
