@@ -18,6 +18,10 @@ jobs:
         export TERM=xterm
         chmod +x install.sh
         sudo ./install.sh
+    
+    - name: Test inclusivelint
+      run: |
+        inclusivelint -v
  
     - name: Run a multi-line script
       working-directory: ./tests
