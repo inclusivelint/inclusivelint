@@ -15,7 +15,7 @@ jobs:
     
     - name: Install inclusivelint
       run: |
-        sudo ./install.sh
+        ./install.sh
  
     - name: Run a multi-line script
       working-directory: ./tests
