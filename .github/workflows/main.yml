@@ -12,6 +12,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Install inclusivelint
+      run: |
+        export TERM=xterm
+        chmod +x install.sh
+        sudo ./install.sh
+ 
     - name: Run a multi-line script
       working-directory: ./tests
       run: |

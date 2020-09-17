@@ -24,7 +24,7 @@ function linter_should_find_contraventions() {
     actualErrors=0
     actualWarnings=0
     expectedErrors=4
-    expectedWarnings=3
+    expectedWarnings=5
 
     # act
     count_contraventions "./samples-1" $actualErrors $actualWarnings
@@ -68,7 +68,7 @@ function count_contraventions() {
     actualErrors=$2
     actualWarnings=$3
 
-    linterResults=$(../inclusivelint $directory) > /dev/null
+    linterResults=$(inclusivelint $directory) > /dev/null
 
     CURRENT_IFS=$IFS
     IFS=$'\n'
