@@ -15,6 +15,7 @@ jobs:
     
     - name: Install inclusivelint
       run: |
+        chmod +x install.sh
         ./install.sh
  
     - name: Run a multi-line script
