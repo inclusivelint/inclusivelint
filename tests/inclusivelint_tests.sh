@@ -68,7 +68,7 @@ function count_contraventions() {
     actualErrors=$2
     actualWarnings=$3
 
-    linterResults=$(../inclusivelint $directory) > /dev/null
+    linterResults=$(inclusivelint $directory) > /dev/null
 
     CURRENT_IFS=$IFS
     IFS=$'\n'
