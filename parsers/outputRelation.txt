@@ -772,7 +772,6 @@ faggot=gay
 dyke=gay
 homo=gay
 sodomite=gay
-bi=bisexual
 homosexual marriage=gay marriage, same-sex marriage
 tranny=transgender
 transvestite=cross-dresser
