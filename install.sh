@@ -15,8 +15,8 @@ function printError() {
 
 VERSION="0.0.4"
 
-wget https://github.com/fernandoBRS/inclusive-linter/releases/download/${VERSION}/inclusivelint -O- | tr -d '\r' >inclusivelint
-wget https://github.com/fernandoBRS/inclusive-linter/releases/download/${VERSION}/outputRelation.txt -O- | tr -d '\r' >outputRelation.txt
+wget https://github.com/inclusivelint/inclusive-linter/releases/download/${VERSION}/inclusivelint -O- | tr -d '\r' >inclusivelint
+wget https://github.com/inclusivelint/inclusive-linter/releases/download/${VERSION}/outputRelation.txt -O- | tr -d '\r' >outputRelation.txt
 
 printInfo "Creating inclusivelint directory..."
 if mkdir ~/.inclusivelint; then
