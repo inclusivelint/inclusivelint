@@ -13,7 +13,7 @@ function printError() {
     echo "${red}${*}${reset}"
 }
 
-VERSION="0.0.2"
+VERSION="0.0.4"
 
 wget https://github.com/fernandoBRS/inclusive-linter/releases/download/${VERSION}/inclusivelint -O- | tr -d '\r' >inclusivelint
 wget https://github.com/fernandoBRS/inclusive-linter/releases/download/${VERSION}/outputRelation.txt -O- | tr -d '\r' >outputRelation.txt
