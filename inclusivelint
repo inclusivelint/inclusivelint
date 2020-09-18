@@ -157,9 +157,9 @@ function find_contraventions() {
 
 function define_base_path() {
     if [[ -z $GITHUB_SHA ]]; then
-        BASE_PATH="/root"
+        BASE_PATH=~
     else
-        BASE_PATH="~"
+        BASE_PATH=/root
     fi
 }
 
