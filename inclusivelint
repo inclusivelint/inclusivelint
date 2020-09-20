@@ -2,6 +2,7 @@
 
 declare -A ERROR_TERMINOLOGIES
 declare -A WARNING_TERMINOLOGIES
+declare -A IGNORE_DICTIONARY
 declare contraventionFound=false
 declare SOFTWARE_VERSION
 declare WORD_TO_ADD
@@ -9,12 +10,18 @@ declare TYPE_OF_WORD
 declare OPERATION_TO_PERFORM
 declare REPLACEMENT_WORD
 
+function create_ignore_words_list() {
+    while read line; do
+        IGNORE_DICTIONARY[$line]=1
+    done < <( cat ~/.inclusivelint/.inclusivelintignore )
+}
+
 function create_dictionary() {
     while read line; do
         key="$(cut -d'=' -f1 <<<"$line")"
         value="$(cut -d'=' -f2 <<<"$line")"
         if [[ ! $key == *" "* ]]; then
-            WARNING_TERMINOLOGIES[$key]="The term $key was detected, consider other terms such as $value instead."
+            if [[ ! ${IGNORE_DICTIONARY[$key]} ]]; then WARNING_TERMINOLOGIES[$key]="The term $key was detected, consider other terms such as $value instead."; fi
         fi
     done < <( cat ~/.inclusivelint/outputRelation.txt )
 }
