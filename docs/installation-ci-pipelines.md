@@ -15,7 +15,7 @@ jobs:
     - name: Install inclusive linter
       run: |
         wget https://github.com/inclusivelint/inclusivelint/releases/download/<VERSION>/inclusivelint -O- | tr -d '\r' >inclusivelint
-        sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
+        sudo chmod +x inclusivelint && sudo mv inclusivelint /usr/bin
         mkdir ~/.inclusivelint
         wget https://github.com/inclusivelint/inclusivelint/releases/download/<VERSION>/outputRelation.txt -O- | tr -d '\r' >outputRelation.txt
         sudo mv outputRelation.txt ~/.inclusivelint
