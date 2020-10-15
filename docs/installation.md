@@ -23,7 +23,7 @@ wget https://github.com/inclusivelint/inclusivelint/releases/download/<VERSION>/
 Set the `inclusivelint` as an executable and move it to `/usr/bin` directory:
 
 ```sh
-sudo chmod +x inclusivelint && mv inclusivelint /usr/bin
+sudo chmod +x inclusivelint && sudo mv inclusivelint /usr/bin
 ```
 
 Create the folder to drop the dictionary of words:
