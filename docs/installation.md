@@ -6,11 +6,13 @@ There are two main ways of installing inclusivelint, manual steps or via script.
 
 ### **Option 1: Installing via script**
 
-We created a script to make the installation process easier. The script```install.sh``` is on the repo. To run it, do:
+We created a script to make the installation process easier. The script `install.sh` is on the repo. To run it, do:
 
 ``` sh
-sudo ./install.sh
+./install.sh
 ```
+
+This script will require `root` password as `sudo` is required to copy the file to `/usr/bin`
 
 ### **Option 2: Running all steps manually**
 

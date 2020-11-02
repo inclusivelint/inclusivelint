@@ -27,7 +27,8 @@ else
     exit 1 
 fi
 
-if chmod +x inclusivelint && mv inclusivelint /usr/bin; then
+printInfo "sudo is needed to move inclusivelint binary to /usr/bin"
+if chmod +x inclusivelint && sudo mv inclusivelint /usr/bin; then
     printInfo "Finished intallation. Check if everything is working well running inclusivelint -v"
     exit 0
 else

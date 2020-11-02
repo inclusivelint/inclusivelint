@@ -180,6 +180,7 @@ do
     in
     v)
         echo $SOFTWARE_VERSION
+        exit 0
         ;;
     w)
         WORD_TO_ADD=${OPTARG}
