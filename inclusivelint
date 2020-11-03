@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+date
+
 declare -A ERROR_TERMINOLOGIES
 declare -A WARNING_TERMINOLOGIES
 declare -A IGNORE_DICTIONARY
@@ -130,14 +132,14 @@ function find_contraventions_from_git_repo() {
     for (( i=0; i<${#files[@]}; i++ ))
     do
         for pattern in "${!ERROR_TERMINOLOGIES[@]}"; do
-            find_error_contraventions "${files[$i]}" $pattern
+            find_error_contraventions "${files[$i]}" $pattern &
         done
     done
 
     for (( i=0; i<${#files[@]}; i++ ))
     do
         for pattern in "${!WARNING_TERMINOLOGIES[@]}"; do
-            find_warning_contraventions "${files[$i]}" $pattern
+            find_warning_contraventions "${files[$i]}" $pattern &
         done
     done
 
@@ -149,14 +151,14 @@ function find_contraventions() {
 
     for file in "$files"; do
         for pattern in "${!ERROR_TERMINOLOGIES[@]}"; do
-            find_error_contraventions "$file" $pattern
+            find_error_contraventions "$file" $pattern &
         done
     done;
 
     for file in "$files"; do
         if ! [[ -d "$file" && ! -L "$file" ]]; then
             for pattern in "${!WARNING_TERMINOLOGIES[@]}"; do
-                find_warning_contraventions "$file" $pattern
+                find_warning_contraventions "$file" $pattern &
             done
         fi;
     done
@@ -221,3 +223,5 @@ if $contraventionFound ; then
 else
     printInfo "No non-inclusive terminologies found"
 fi
+
+date
