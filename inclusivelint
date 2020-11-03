@@ -14,7 +14,7 @@ declare BASE_PATH
 function create_ignore_words_list() {
     while read line; do
         IGNORE_DICTIONARY[$line]=1
-    done < <( cat ~/.inclusivelint/.inclusivelintignore )
+    done < <( cat ${BASE_PATH}/.inclusivelint/.inclusivelintignore )
 }
 
 function create_dictionary() {
