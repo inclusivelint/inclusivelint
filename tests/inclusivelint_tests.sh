@@ -21,17 +21,11 @@ function printWarning() {
 
 function linter_should_find_contraventions() {
     # prepare
-    actualErrors=0
     actualWarnings=0
-    expectedErrors=4
     expectedWarnings=5
 
     # act
     count_contraventions "./samples-1" $actualErrors $actualWarnings
-
-    # assert
-    assertEqual "errors" $actualErrors $expectedErrors
-    errorsAssertResult=$?
 
     assertEqual "warnings" $actualWarnings $expectedWarnings
     warningsAssertResult=$?

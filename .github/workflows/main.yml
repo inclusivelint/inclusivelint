@@ -23,4 +23,4 @@ jobs:
       working-directory: ./tests
       run: |
         export TERM=xterm
-        ./run_tests.sh
+        sudo ./run_tests.sh
