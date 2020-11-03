@@ -22,8 +22,8 @@ function printWarning() {
 function linter_should_find_contraventions() {
     # prepare
     actualErrors=0
-    actualWarnings=0
-    expectedErrors=4
+    actualWarnings=4
+    expectedErrors=0
     expectedWarnings=5
 
     # act
