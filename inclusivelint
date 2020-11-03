@@ -13,7 +13,7 @@ declare BASE_PATH
 
 function create_ignore_words_list() {
     while read line; do
-        IGNORE_DICTIONARY[$line]=1
+        IGNORE_DICTIONARY[${line}]=1
     done < <( cat ${BASE_PATH}/.inclusivelint/.inclusivelintignore )
 }
 
@@ -206,6 +206,7 @@ if [ ! -z "$OPERATION" ]; then
     exit 0
 fi
 
+create_ignore_words_list
 create_dictionary
 
 # Check if the directory is a git repository
