@@ -1,5 +1,7 @@
 # Inclusivelint ![inclusivelint-ci](https://github.com/inclusivelint/inclusivelint/workflows/inclusivelint-ci/badge.svg)
 
+**We will soon not update this repo anymore, since the cli is being migrated to use the typescript library that can be found [here](https://github.com/inclusivelint/inclusivelint-lib)**
+
 As developers, we’re continually writing code, and we do that by passing messages. Each message carries a lot of context and semantics so we're always evolving how to do it in a better way. Terminology is in the roots of communication, and therefore is as vital for writing quality code as writing user stories, documentation, and even naming branches. If you care a lot about communicating effectively, I think we must use an **inclusive language** to do so.
 
 The `inclusivelint` is a static analysis tool that enables a more inclusive language and diverse culture by looking for non-inclusive terminologies on your Git repository and suggesting new ones. The [Categories & Terminologies](./docs/categories-and-terminologies.md) section covers the categories and non-inclusive terminologies currently supported by the linter.
